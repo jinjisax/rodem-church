@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-label="사진 준비 중">
+<defs>
+<linearGradient id="skyDay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FD0FF"/><stop offset=".55" stop-color="#D3F1FF"/><stop offset="1" stop-color="#FFF6D2"/></linearGradient>
+<linearGradient id="skyDawn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#86CBFF"/><stop offset=".5" stop-color="#FFE7B0"/><stop offset="1" stop-color="#FFC08E"/></linearGradient>
+<linearGradient id="skyDusk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A66DB"/><stop offset=".55" stop-color="#B58AE8"/><stop offset="1" stop-color="#FFB088"/></linearGradient>
+<linearGradient id="skyWarm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD48F"/><stop offset=".5" stop-color="#FFE8C4"/><stop offset="1" stop-color="#FFF7E6"/></linearGradient>
+<linearGradient id="skySunset" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF7F6B"/><stop offset=".45" stop-color="#FFB86B"/><stop offset="1" stop-color="#FFE7A0"/></linearGradient>
+<linearGradient id="skyMint" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CDEFE0"/><stop offset="1" stop-color="#F3FBEE"/></linearGradient>
+<linearGradient id="h1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFF08F"/><stop offset="1" stop-color="#A8DC66"/></linearGradient>
+<linearGradient id="h2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9DD650"/><stop offset="1" stop-color="#6FC04A"/></linearGradient>
+<linearGradient id="h3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5EC07E"/><stop offset="1" stop-color="#33A46C"/></linearGradient>
+<linearGradient id="h4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2FA068"/><stop offset="1" stop-color="#1B7F52"/></linearGradient>
+<linearGradient id="soil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C2854C"/><stop offset="1" stop-color="#7E4B29"/></linearGradient>
+<linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFC46B" stop-opacity=".9"/><stop offset="1" stop-color="#5BB6E8" stop-opacity=".9"/></linearGradient>
+<linearGradient id="bark" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8A5F3A"/><stop offset=".5" stop-color="#BE8F5A"/><stop offset="1" stop-color="#7A5230"/></linearGradient>
+<radialGradient id="sunGlow"><stop offset="0" stop-color="#FFF3B8" stop-opacity="1"/><stop offset="1" stop-color="#FFF3B8" stop-opacity="0"/></radialGradient>
+<g id="leaf"><path d="M0 0C24-46 96-56 140 0C96 56 24 46 0 0Z"/><path d="M10 0H120" stroke="#fff" stroke-opacity=".4" stroke-width="4" fill="none" stroke-linecap="round"/></g>
+<g id="cloud"><ellipse cx="0" cy="0" rx="120" ry="42" fill="#fff"/><ellipse cx="-70" cy="10" rx="70" ry="34" fill="#fff"/><ellipse cx="70" cy="12" rx="80" ry="34" fill="#fff"/><ellipse cx="0" cy="-30" rx="70" ry="42" fill="#fff"/></g>
+<g id="spark"><path d="M0-22C3-8 8-3 22 0C8 3 3 8 0 22C-3 8-8 3-22 0C-8-3-3-8 0-22Z"/></g>
+<g id="bird"><path d="M-34 0C-20-26-6-22 0-6C6-22 20-26 34 0C20-12 8-10 0 8C-8-10-20-12-34 0Z"/></g>
+<g id="fruit"><path d="M0-30q4-22 16-30" stroke="#6B4A2F" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M8-44C22-62 44-60 52-48C40-36 20-36 8-44Z" fill="#5EB03A"/><circle r="38" fill="#FF5A4D"/><path d="M-22-14C-16-28-4-32 6-30" stroke="#fff" stroke-opacity=".55" stroke-width="7" stroke-linecap="round" fill="none"/></g>
+<g id="fruitY"><path d="M0-30q4-22 16-30" stroke="#6B4A2F" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M8-44C22-62 44-60 52-48C40-36 20-36 8-44Z" fill="#5EB03A"/><circle r="38" fill="#FFB52E"/><path d="M-22-14C-16-28-4-32 6-30" stroke="#fff" stroke-opacity=".6" stroke-width="7" stroke-linecap="round" fill="none"/></g>
+<path id="drop" d="M0-44C30-6 30 26 0 26C-30 26-30-6 0-44Z"/>
+<g id="note"><ellipse cx="0" cy="0" rx="13" ry="9" transform="rotate(-22)"/><rect x="10" y="-64" width="6" height="62"/><path d="M16-64q26 6 28 32q-12-16-28-18Z"/></g>
+<g id="heart"><path d="M0 18C-30-6-26-30-8-30C-2-30 0-24 0-22C0-24 2-30 8-30C26-30 30-6 0 18Z"/></g>
+<g id="flower"><ellipse cx="0" cy="-16" rx="9" ry="15"/><ellipse cx="0" cy="-16" rx="9" ry="15" transform="rotate(72)"/><ellipse cx="0" cy="-16" rx="9" ry="15" transform="rotate(144)"/><ellipse cx="0" cy="-16" rx="9" ry="15" transform="rotate(216)"/><ellipse cx="0" cy="-16" rx="9" ry="15" transform="rotate(288)"/><circle r="8" fill="#FFD84D"/></g>
+<style>
+.sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 6s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
+.float{animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.bob{animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.cl{animation:cl 18s ease-in-out infinite alternate}
+@keyframes cl{from{transform:translateX(-30px)}to{transform:translateX(40px)}}
+.spin{transform-box:fill-box;transform-origin:50% 50%;animation:spin 70s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tw{animation:tw 3s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.25}50%{opacity:1}}
+.fall{animation:fall 3.2s ease-in infinite}
+@keyframes fall{0%{transform:translateY(-40px);opacity:0}15%{opacity:1}100%{transform:translateY(130px);opacity:0}}
+.fly{animation:fly 16s ease-in-out infinite alternate}
+@keyframes fly{from{transform:translate(-40px,10px)}to{transform:translate(70px,-30px)}}
+.pulse{transform-box:fill-box;transform-origin:50% 50%;animation:pulse 3.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.92}50%{transform:scale(1.07);opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</defs>
+<rect width="900" height="1200" fill="url(#skyMint)"/>
+<circle cx="450" cy="560" r="360" fill="#fff" opacity=".55"/>
+<g class="float"><use href="#leaf" transform="translate(120 240) rotate(-30) scale(.9)" fill="#A9DC6B" opacity=".8"/></g>
+<g class="float" style="animation-delay:-2s"><use href="#leaf" transform="translate(780 200) rotate(200) scale(.8)" fill="#86C440" opacity=".8"/></g>
+<g class="tw"><use href="#spark" transform="translate(150 640) scale(1.1)" fill="#FFD84D"/></g><g class="tw" style="animation-delay:-1.5s"><use href="#spark" transform="translate(760 560) scale(.9)" fill="#FFD84D"/></g>
+
+<path d="M110 1200C110 960 290 880 450 880C610 880 790 960 790 1200Z" fill="#22885D"/>
+<path d="M395 885L450 990L505 885L470 878L450 930L430 878Z" fill="#fff" opacity=".92"/><path d="M450 990L432 1200H468Z" fill="#14683F" opacity=".7"/>
+<rect x="410" y="780" width="80" height="120" rx="30" fill="#2A9560"/>
+<circle cx="450" cy="640" r="170" fill="#33A36B"/>
+<path d="M280 622C268 428 632 428 620 622C582 540 318 540 280 622Z" fill="#14683F"/>
+</svg>

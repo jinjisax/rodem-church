@@ -1,0 +1,202 @@
+# ============================================================
+#  로뎀나무교회 관리 화면 설정 (Decap CMS)
+#  주소: https://www.rodemin.kr/admin/
+#
+#  ※ 맨 위 backend 부분은 '관리툴-설정방법.md' 의 안내대로 한 번만 고치면 됩니다.
+#    (깃허브 저장소 이름과, DecapBridge 가 알려주는 주소 2개)
+#  ※ 그 아래 collections 는 화면에 나오는 메뉴와 입력칸입니다. 글자만 바꾸셔도 됩니다.
+# ============================================================
+backend:
+  name: git-gateway
+  repo: 깃허브아이디/저장소이름                                   # ← 바꾸세요 (예: rodemchurch/homepage)
+  branch: main
+  identity_url: https://auth.decapbridge.com/sites/여기에-사이트-아이디   # ← DecapBridge 화면의 값으로 바꾸세요
+  gateway_url: https://gateway.decapbridge.com
+
+locale: ko
+site_url: https://www.rodemin.kr
+display_url: https://www.rodemin.kr
+logo_url: https://www.rodemin.kr/assets/img/logo.png
+publish_mode: simple
+show_preview_links: false
+
+media_folder: assets/img/uploads
+public_folder: /assets/img/uploads
+
+collections:
+  # ------------------------------------------------------------
+  - name: people
+    label: "① 섬기는 사람들"
+    description: "이름 · 직분 · 담당 · 사진을 추가하거나 고칩니다. 위에서부터 순서대로 나옵니다."
+    editor: { preview: false }
+    files:
+      - name: people
+        label: "섬기는 사람들 목록"
+        file: content/people.json
+        format: json
+        fields:
+          - label: "사람 목록 (끌어서 순서를 바꿀 수 있습니다)"
+            name: people
+            widget: list
+            summary: "{{fields.name}} · {{fields.role}}"
+            fields:
+              - { label: "이름", name: name, widget: string }
+              - { label: "직분", name: role, widget: string, hint: "예: 담임목사, 부목사, 교육전도사, 장로" }
+              - { label: "담당", name: duty, widget: string, required: false, hint: "예: 교회 전반, 대학 · 청년부 (없으면 비워 두세요)" }
+              - { label: "사진", name: photo, widget: image, hint: "세로로 찍은 얼굴 사진(JPG). 얼굴이 위쪽에 오게 찍은 사진이 가장 잘 나옵니다.", allow_multiple: false }
+              - { label: "확대 (PC 화면)", name: zoom, widget: number, value_type: float, min: 1, max: 1.5, step: 0.02, default: 1, required: false,
+                  hint: "사진 속 얼굴이 작아 보일 때만 1.1~1.2 정도로 올리세요. 1 은 확대하지 않음입니다." }
+
+  # ------------------------------------------------------------
+  - name: worship
+    label: "② 예배 시간"
+    description: "여기서 고치면 첫 화면, 교회소개, 교회학교, 모든 페이지 맨 아래에 함께 바뀝니다."
+    editor: { preview: false }
+    files:
+      - name: worship
+        label: "예배 시간표"
+        file: content/worship.json
+        format: json
+        fields:
+          - label: "장년 예배"
+            name: adult
+            widget: list
+            summary: "{{fields.name}} · {{fields.time}}"
+            fields:
+              - { label: "예배 이름", name: name, widget: string, hint: "예: 주일 1부 예배" }
+              - { label: "시간", name: time, widget: string, hint: "예: 오전 9:00" }
+              - { label: "장소", name: place, widget: string, required: false, hint: "예: 본당" }
+              - { label: "짧은 이름", name: short, widget: string, required: false, hint: "첫 화면과 맨 아래에 쓰는 짧은 이름. 예: 주일 1부" }
+              - { label: "첫 화면 맨 위에 보이기", name: hero, widget: boolean, default: false, required: false, hint: "켜 두면 첫 화면 큰 사진 아래 줄에 나옵니다 (3개까지 권장)" }
+              - { label: "맨 아래 안내에 보이기", name: footer, widget: boolean, default: true, required: false }
+          - label: "다음세대 예배"
+            name: nextgen
+            widget: list
+            summary: "{{fields.name}} · {{fields.time}}"
+            fields:
+              - { label: "부서 이름", name: name, widget: string, hint: "예: 예닮 유·초등부" }
+              - { label: "시간", name: time, widget: string, hint: "예: 오전 11:00" }
+              - { label: "장소", name: place, widget: string, required: false, hint: "예: 교육관 Ⅱ (B101호)" }
+              - { label: "짧은 이름", name: short, widget: string, required: false, hint: "첫 화면 예배 시간 줄에 쓰는 이름. 예: 유초등부" }
+              - { label: "첫 화면 두 번째 줄에 보이기", name: hero, widget: boolean, default: false, required: false, hint: "켜 두면 첫 화면 맨 아래, 주소 줄 밑에 나옵니다 (4개까지 권장)" }
+
+  # ------------------------------------------------------------
+  - name: bulletin
+    label: "③ 주보"
+    description: "매주 새 주보 2장을 추가하세요. ※ 순서: 뒷면을 먼저 추가한 다음 앞면을 추가하면, 앞면이 맨 위에 오게 됩니다. 주보 페이지에는 맨 위 2장만 나오고, 앞면(맨 위)의 표지가 첫 화면에도 나옵니다. 오래된 주보는 삭제해도 됩니다. (가로 1403×992 크기 그대로 올리세요)"
+    editor: { preview: false }
+    files:
+      - name: bulletin
+        label: "주보 목록"
+        file: content/bulletin.json
+        format: json
+        fields:
+          - label: "주보 (위에서부터 최신순)"
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            add_to_top: true
+            fields:
+              - { label: "제목", name: title, widget: string, hint: "예: 26년 9월 20일 주보 앞면 / 뒷면" }
+              - { label: "날짜", name: date, widget: string, required: false, hint: "예: 2026-09-20" }
+              - { label: "주보 사진", name: image, widget: image, hint: "주보 1면을 찍은 사진이나 이미지(JPG, PNG)" }
+
+  # ------------------------------------------------------------
+  - name: gallery
+    label: "④ 갤러리"
+    description: "행사·수련회 사진을 추가하세요. 세로·가로 사진 모두 원래 모양 그대로 나옵니다."
+    editor: { preview: false }
+    files:
+      - name: gallery
+        label: "갤러리 사진"
+        file: content/gallery.json
+        format: json
+        fields:
+          - label: "사진 (위에서부터 순서대로)"
+            name: items
+            widget: list
+            summary: "{{fields.caption | default('사진')}}"
+            add_to_top: true
+            fields:
+              - { label: "사진", name: image, widget: image, hint: "JPG 사진" }
+              - { label: "설명", name: caption, widget: string, required: false, hint: "예: 2026 가족찬양제 (없으면 비워 두세요)" }
+
+  # ------------------------------------------------------------
+  - name: notices
+    label: "⑤ 공지 · 행사"
+    description: "포스터와 공지를 올리고 내립니다. 맨 위 1건이 첫 화면에도 나옵니다."
+    editor: { preview: false }
+    files:
+      - name: notices
+        label: "공지 · 행사"
+        file: content/notices.json
+        format: json
+        fields:
+          - label: "공지 · 행사 (위에서부터 최신순)"
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            add_to_top: true
+            fields:
+              - { label: "분류", name: tag, widget: string, required: false, hint: "예: 전도축제, 초청 집회, 수련회" }
+              - { label: "제목", name: title, widget: string }
+              - { label: "한 줄 설명", name: summary, widget: text, required: false }
+              - { label: "포스터 사진", name: image, widget: image, required: false, hint: "포스터 이미지(JPG, PNG)" }
+              - { label: "날짜", name: date, widget: string, required: false, hint: "예: 2026-11-15" }
+              - { label: "자세히 보기 주소", name: link, widget: string, required: false, hint: "https:// 로 시작하는 주소 (없으면 비워 두세요)" }
+          - label: "안내 칸 (기도·전도 모임 등)"
+            name: info
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "제목", name: title, widget: string, hint: "예: 기도 & 전도" }
+              - label: "줄 (한 줄씩 추가)"
+                name: lines
+                widget: list
+                field: { label: "내용", name: line, widget: string }
+
+  # ------------------------------------------------------------
+  - name: sermons
+    label: "⑥ 설교 · 유튜브"
+    description: "영상은 유튜브 주소(또는 아이디)만 붙여 넣으면 됩니다."
+    editor: { preview: false }
+    files:
+      - name: sermons
+        label: "설교 · 영상"
+        file: content/sermons.json
+        format: json
+        fields:
+          - label: "첫 화면 대표 영상"
+            name: featured
+            widget: object
+            fields:
+              - { label: "유튜브 영상 주소", name: video, widget: string, hint: "예: https://www.youtube.com/watch?v=sxh3OKbTaJM" }
+              - { label: "제목", name: title, widget: string }
+              - { label: "부제(날짜 등)", name: date, widget: string, required: false }
+          - label: "지난 영상 (말씀 페이지)"
+            name: recent
+            widget: list
+            summary: "{{fields.title}}"
+            add_to_top: true
+            fields:
+              - { label: "유튜브 영상 주소", name: video, widget: string }
+              - { label: "분류", name: tag, widget: string, required: false, hint: "예: 예배, 행사, 교육부, 선교" }
+              - { label: "제목", name: title, widget: string }
+              - { label: "설명(날짜 등)", name: note, widget: string, required: false }
+          - label: "재생목록"
+            name: playlists
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "재생목록 주소", name: id, widget: string, hint: "유튜브 재생목록 주소(…list=…)를 붙여 넣으세요" }
+              - { label: "이름", name: title, widget: string }
+              - { label: "대표 그림용 영상 주소", name: thumb, widget: string, hint: "그 재생목록 안의 영상 하나의 주소 (그 영상 그림이 표지가 됩니다)" }
+              - { label: "설명", name: note, widget: string, required: false }
+          - label: "1분 칼럼 (말씀 페이지 아래쪽)"
+            name: column
+            widget: object
+            fields:
+              - { label: "유튜브 영상 주소", name: video, widget: string }
+              - { label: "재생목록 주소", name: list, widget: string, required: false }
+              - { label: "제목", name: title, widget: string }
+              - { label: "부제", name: date, widget: string, required: false }
