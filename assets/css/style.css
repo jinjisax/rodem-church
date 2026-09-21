@@ -930,3 +930,16 @@ table { border-collapse: collapse; width: 100%; }
   .bulletin-wide .card__body > :not(.card__tag) { display: none; }
   .bulletin-wide .card__tag { background: rgba(8, 37, 26, .82); color: #fff; margin: 0; font-size: .66rem; padding: 2px 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, .25); }
 }
+/* 주보(휴대폰): 안내 글씨는 넣지 않고 사진만 / 크게 보기 창은 크기를 직접 지정해 꽉 차게 */
+@media (max-width: 700px) { .bulletin-wide .card__body { display: none; } }
+.lightbox__crop { max-width: none; flex: none; background: transparent; }
+.lightbox__crop img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 0 0; }
+.lightbox__crop { position: relative; }
+@media (max-width: 700px) { .lightbox--wide { padding-inline: 0; } .lightbox--wide .lightbox__crop { border-radius: 0; } }
+
+.nw { white-space: nowrap; }
+/* 손가락으로 누르는 화면(터치)에서는 '마우스 올림' 금빛 효과가 남지 않게 — 브라우저마다 hover 판별이 달라 pointer 로도 함께 막습니다 */
+@media (pointer: coarse) {
+  .timetable tbody tr:hover { background: #fff; box-shadow: none; }
+  .timetable tbody tr:nth-child(even):hover { background: #FAFCF9; }
+}
