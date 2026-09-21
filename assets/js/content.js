@@ -66,7 +66,10 @@
     body.textContent = '';
     rows.forEach(function (r) {
       var tr = el('tr');
-      var th = el('th', '', str(r.name)); th.setAttribute('scope', 'row'); tr.appendChild(th);
+      var th = el('th'); th.setAttribute('scope', 'row');
+      var nm = str(r.name), pm = nm.match(/^(.*?)\s*(\([^)]*\))\s*$/);   /* '(월–금)' 같은 괄호는 중간에서 끊기지 않게 통째로 다음 줄로 */
+      if (pm && pm[1]) { th.appendChild(document.createTextNode(pm[1] + ' ')); th.appendChild(el('span', 'nw', pm[2])); } else { th.textContent = nm; }
+      tr.appendChild(th);
       var td = el('td');
       var b = el('b', '', str(r.time));
       td.appendChild(b);
@@ -334,7 +337,12 @@
   function eval_ratio(s) { var p = String(s).split('/'); var a = parseFloat(p[0]), c = parseFloat(p[1] || 1); return c ? a / c : 1; }
   function initLightbox() {
     var box = null;
-    function close() { if (box) { box.remove(); box = null; document.body.style.overflow = ''; } }
+    function close() {
+      if (box) {
+        if (box._fit) { window.removeEventListener('resize', box._fit); window.removeEventListener('orientationchange', box._fit); }
+        box.remove(); box = null; document.body.style.overflow = '';
+      }
+    }
     document.addEventListener('click', function (e) {
       var b = e.target.closest && e.target.closest('.zoomimg');
       if (!b) return;
@@ -348,7 +356,18 @@
       var x = el('button', 'lightbox__x', '닫기 ✕'); x.type = 'button';
       var ratio = b.getAttribute('data-ratio');
       if (ratio) {
-        var crop = el('div', 'lightbox__crop'); crop.style.aspectRatio = ratio; crop.style.setProperty('--r', String(eval_ratio(ratio)));
+        var crop = el('div', 'lightbox__crop');
+        /* 화면 크기에 맞춰 가로·세로를 직접 계산해 넣습니다 (브라우저마다 다른 비율 계산에 의존하지 않도록) */
+        var fit = function () {
+          var r = eval_ratio(ratio) || 1.8;
+          var side = window.innerWidth <= 700 ? 0 : 32;   /* 휴대폰은 화면 양옆 끝까지 */
+          var w = Math.min(window.innerWidth - side, (window.innerHeight - 32) * r, 1400);
+          crop.style.width = Math.floor(w) + 'px'; crop.style.height = Math.floor(w / r) + 'px';
+        };
+        box.classList.add('lightbox--wide');
+        fit();
+        window.addEventListener('resize', fit); window.addEventListener('orientationchange', fit);
+        box._fit = fit;
         crop.appendChild(img); box.appendChild(crop);
       } else { box.appendChild(img); }
       box.appendChild(x);
