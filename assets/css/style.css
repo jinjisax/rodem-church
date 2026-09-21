@@ -905,3 +905,28 @@ table { border-collapse: collapse; width: 100%; }
 .lightbox__crop img { max-width: none; max-height: none; }
 .lightbox__x { top: max(14px, env(safe-area-inset-top)); right: 14px; z-index: 2; background: rgba(0, 0, 0, .55); }.lightbox__hint { display: none; position: absolute; left: 0; right: 0; bottom: max(14px, env(safe-area-inset-bottom)); margin: 0; text-align: center; font-size: .82rem; color: rgba(255, 255, 255, .75); pointer-events: none; }
 @media (hover: none) and (pointer: coarse) { .lightbox__hint { display: block; } }
+/* ---------- 휴대폰 보정 ---------- */
+.br-m { display: none; }
+@media (max-width: 560px) {
+  .br-m { display: inline; }
+  /* 첫 화면 예배 시간표: 이름은 한 줄로, 시간 알약 오른쪽에 장소를 붙여 한 줄로 */
+  .timetable--compact tbody th { white-space: nowrap; width: 1%; font-size: .86rem; padding-right: 8px; }
+  .timetable--compact td { line-height: 1.5; }
+  .timetable--compact td b { display: inline-block; width: auto; margin: 0 6px 0 0; }
+  .timetable--compact .tt-place { display: inline; font-size: .84rem; }
+  .timetable--compact .tt-place::before { content: none; }
+}
+/* 터치 화면에서는 '마우스를 올린 줄' 금빛 효과가 탭 후에도 남지 않게 */
+@media (hover: none) {
+  .timetable tbody tr:hover { background: #fff; box-shadow: none; }
+  .timetable tbody tr:nth-child(even):hover { background: #FAFCF9; }
+}
+/* 주보(휴대폰): 화면 폭에 꽉 차게 처음부터 보이고, 사진 아래 흰 카드 여백은 없앱니다 (눌러서 크게 보기는 그대로) */
+@media (max-width: 700px) {
+  .bulletin-wide { margin-inline: calc(var(--pad) * -1); gap: 10px; }
+  .bulletin-wide .card { position: relative; border: 0; border-radius: 0; box-shadow: none; background: transparent; overflow: hidden; }
+  .bulletin-wide .card > .zoomimg, .bulletin-wide .card > .photo { border-radius: 0; }
+  .bulletin-wide .card__body { position: absolute; top: 6px; left: 6px; padding: 0; background: none; }
+  .bulletin-wide .card__body > :not(.card__tag) { display: none; }
+  .bulletin-wide .card__tag { background: rgba(8, 37, 26, .82); color: #fff; margin: 0; font-size: .66rem; padding: 2px 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, .25); }
+}
