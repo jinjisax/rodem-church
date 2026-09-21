@@ -943,3 +943,14 @@ table { border-collapse: collapse; width: 100%; }
   .timetable tbody tr:hover { background: #fff; box-shadow: none; }
   .timetable tbody tr:nth-child(even):hover { background: #FAFCF9; }
 }
+/* 첫 화면 다음세대 표(휴대폰): 장소가 길어 줄이 넘어가면 '교육관' 바로 아래에 맞춰 내려오게 (시간 알약 | 장소 두 칸) */
+@media (max-width: 560px) {
+  .timetable--compact th, .timetable--compact td { border-bottom: 0; }
+  .timetable--compact tbody tr { border-bottom: 1px solid var(--line); }
+  .timetable--compact tbody tr:last-child { border-bottom: 0; }
+  .timetable--compact td { display: flex; align-items: center; gap: 8px; height: 100%; }
+  .timetable--compact td b { flex: none; }
+  .timetable--compact .tt-place { display: block; flex: 1 1 0; min-width: 0; line-height: 1.35; }
+}
+/* 휴대폰·태블릿: 첫 화면 SCROLL 표시는 예배 시간과 겹쳐서 숨깁니다 (파일 뒤쪽에 둬야 기본값에 덮이지 않음) */
+@media (max-width: 900px) { .hero__scroll { display: none; } }
