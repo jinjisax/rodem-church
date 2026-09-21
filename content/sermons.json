@@ -1,0 +1,95 @@
+{
+    "featured":  {
+                     "video":  "sxh3OKbTaJM",
+                     "title":  "창립 20주년 감사 영상",
+                     "date":  "로뎀나무교회 · 2006–2026"
+                 },
+    "recent":  [
+                   {
+                       "video":  "sxh3OKbTaJM",
+                       "tag":  "교회",
+                       "title":  "창립 20주년 감사 영상",
+                       "note":  "2006–2026, 스무 해의 기록"
+                   },
+                   {
+                       "video":  "_-qvS20rwOs",
+                       "tag":  "예배",
+                       "title":  "주일 오후찬양예배",
+                       "note":  "2026. 6. 28."
+                   },
+                   {
+                       "video":  "0oUMSlfApFY",
+                       "tag":  "행사",
+                       "title":  "가족찬양제",
+                       "note":  "2026. 6. 28."
+                   },
+                   {
+                       "video":  "W6PAa8NOxW4",
+                       "tag":  "문화예배",
+                       "title":  "롯데시네마 문화예배 ‘다윗’",
+                       "note":  "2026. 7. 5."
+                   },
+                   {
+                       "video":  "G_De2ebIhV8",
+                       "tag":  "교육부",
+                       "title":  "예함 중고등부 색깔 요리사",
+                       "note":  "2026. 6. 14."
+                   },
+                   {
+                       "video":  "hfBOmmULiPA",
+                       "tag":  "선교",
+                       "title":  "선교 현장에서",
+                       "note":  "캄보디아 스누얼 우포교회"
+                   }
+               ],
+    "playlists":  [
+                      {
+                          "id":  "PLgehvPbVsc-t_ScVc8YMPbCDZHN0b1yyJ",
+                          "title":  "로뎀나무 예배 및 행사",
+                          "thumb":  "aQStb5cwFVo",
+                          "note":  ""
+                      },
+                      {
+                          "id":  "PLgehvPbVsc-vla58rrHi-lCXJxTwdkNfZ",
+                          "title":  "수요예배",
+                          "thumb":  "0sA-zb-39l4",
+                          "note":  ""
+                      },
+                      {
+                          "id":  "PLgehvPbVsc-vk-gq1XV0k4X0YuRumijJW",
+                          "title":  "여호수아 성가대",
+                          "thumb":  "G1O6DJj0W1E",
+                          "note":  ""
+                      },
+                      {
+                          "id":  "PLgehvPbVsc-vZi-O8RTA3l9z1dxZcA6Vo",
+                          "title":  "로뎀나무 교육부",
+                          "thumb":  "oSb5u844w8s",
+                          "note":  ""
+                      },
+                      {
+                          "id":  "PLgehvPbVsc-sr8BE81LWVOusAtEvg-C7c",
+                          "title":  "로뎀나무 선교",
+                          "thumb":  "hfBOmmULiPA",
+                          "note":  ""
+                      },
+                      {
+                          "id":  "PLc_yuvh4Lb1U",
+                          "title":  "CBS JOY4U 1분 칼럼",
+                          "thumb":  "Y0SYkHmFca4",
+                          "note":  "조호석 목사"
+                      },
+                      {
+                          "id":  "PLgehvPbVsc-vPVeoUGeyAp4rD0okee8Cd",
+                          "title":  "로뎀나무교회",
+                          "thumb":  "KvnsZIWJpQc",
+                          "note":  ""
+                      }
+                  ],
+    "column":  {
+                   "video":  "Y0SYkHmFca4",
+                   "list":  "PLc_yuvh4Lb1U",
+                   "title":  "CBS JOY4U 1분 칼럼",
+                   "date":  "조호석 목사"
+               }
+}

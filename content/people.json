@@ -1,0 +1,88 @@
+{
+    "people":  [
+                   {
+                       "name":  "조호석",
+                       "role":  "담임목사",
+                       "duty":  "교회 총괄 목양",
+                       "photo":  "assets/img/uploads/staff-johoseok.jpg",
+                       "zoom":  1
+                   },
+                   {
+                       "name":  "김성은",
+                       "role":  "부목사",
+                       "duty":  "교회 전반",
+                       "photo":  "assets/img/uploads/staff-kimseongeun.jpg",
+                       "zoom":  1
+                   },
+                   {
+                       "name":  "이무량",
+                       "role":  "교육목사",
+                       "duty":  "대학 · 청년부",
+                       "photo":  "assets/img/uploads/staff-leemuryang.jpg",
+                       "zoom":  1
+                   },
+                   {
+                       "name":  "김기영",
+                       "role":  "교육목사",
+                       "duty":  "예함 중 · 고등부",
+                       "photo":  "assets/img/uploads/staff-kimgiyeong.jpg",
+                       "zoom":  1
+                   },
+                   {
+                       "name":  "권민아",
+                       "role":  "교육전도사",
+                       "duty":  "예닮 유 · 초등부",
+                       "photo":  "assets/img/uploads/staff-kwonmina.jpg",
+                       "zoom":  1
+                   },
+                   {
+                       "name":  "이순옥",
+                       "role":  "전도사",
+                       "duty":  "실버 사역 · 차량 안내",
+                       "photo":  "assets/img/uploads/staff-leesunok.jpg",
+                       "zoom":  1
+                   },
+                   {
+                       "name":  "최혜경",
+                       "role":  "사모",
+                       "duty":  "예쁨 유아부 부장",
+                       "photo":  "assets/img/uploads/staff-choihyekyung.jpg",
+                       "zoom":  1
+                   },
+                   {
+                       "name":  "윤영민",
+                       "role":  "시무장로",
+                       "duty":  "예닮 유·초등부 부장",
+                       "photo":  "assets/img/uploads/elder-yoonyoungmin.jpg",
+                       "zoom":  1
+                   },
+                   {
+                       "name":  "오은영",
+                       "role":  "시무장로",
+                       "duty":  "",
+                       "photo":  "assets/img/uploads/elder-oheunyoung.jpg",
+                       "zoom":  1
+                   },
+                   {
+                       "name":  "조영훈",
+                       "role":  "장로",
+                       "duty":  "",
+                       "photo":  "assets/img/uploads/elder-johyounghoon.svg",
+                       "zoom":  1
+                   },
+                   {
+                       "name":  "나기영",
+                       "role":  "장로",
+                       "duty":  "",
+                       "photo":  "assets/img/uploads/elder-nagiyoung.jpg",
+                       "zoom":  1
+                   },
+                   {
+                       "name":  "남기수",
+                       "role":  "장로",
+                       "duty":  "",
+                       "photo":  "assets/img/uploads/elder-namgisoo.jpg",
+                       "zoom":  1
+                   }
+               ]
+}

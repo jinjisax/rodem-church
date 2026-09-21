@@ -1,0 +1,89 @@
+{
+    "adult":  [
+                  {
+                      "name":  "주일 1부 예배",
+                      "time":  "오전 9:00",
+                      "place":  "본당",
+                      "short":  "주일 1부",
+                      "hero":  true,
+                      "footer":  true
+                  },
+                  {
+                      "name":  "주일 2부 예배",
+                      "time":  "오전 11:00",
+                      "place":  "본당",
+                      "short":  "주일 2부",
+                      "hero":  true,
+                      "footer":  true
+                  },
+                  {
+                      "name":  "주일 오후찬양예배",
+                      "time":  "오후 2:00",
+                      "place":  "본당",
+                      "short":  "오후찬양예배",
+                      "hero":  true,
+                      "footer":  true
+                  },
+                  {
+                      "name":  "새벽기도회 (월–금)",
+                      "time":  "오전 5:30",
+                      "place":  "본당",
+                      "short":  "새벽기도회",
+                      "hero":  false,
+                      "footer":  true
+                  },
+                  {
+                      "name":  "수요예배",
+                      "time":  "저녁 7:30",
+                      "place":  "본당",
+                      "short":  "수요예배",
+                      "hero":  false,
+                      "footer":  true
+                  },
+                  {
+                      "name":  "금요기도회",
+                      "time":  "밤 9:00",
+                      "place":  "본당",
+                      "short":  "금요기도회",
+                      "hero":  false,
+                      "footer":  true
+                  }
+              ],
+    "nextgen":  [
+                    {
+                        "name":  "예쁨 영아부",
+                        "time":  "오전 11:00",
+                        "place":  "영아부실",
+                        "short":  "유아유치부",
+                        "hero":  true
+                    },
+                    {
+                        "name":  "예쁨 유치부",
+                        "time":  "오전 11:00",
+                        "place":  "교육관 Ⅰ (102호)",
+                        "short":  "",
+                        "hero":  false
+                    },
+                    {
+                        "name":  "예닮 유·초등부",
+                        "time":  "오전 11:00",
+                        "place":  "교육관 Ⅱ (B101호)",
+                        "short":  "유초등부",
+                        "hero":  true
+                    },
+                    {
+                        "name":  "예함 중·고등부",
+                        "time":  "오전 11:00",
+                        "place":  "교육관 Ⅱ (B103호)",
+                        "short":  "중고등부",
+                        "hero":  true
+                    },
+                    {
+                        "name":  "대학 · 청년부",
+                        "time":  "오후 2:00",
+                        "place":  "교육관 Ⅱ (B103호)",
+                        "short":  "대학청년부",
+                        "hero":  true
+                    }
+                ]
+}

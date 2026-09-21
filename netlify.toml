@@ -1,0 +1,15 @@
+# 넷리파이 설정 — 만든 페이지를 그대로 올립니다 (별도 빌드 과정 없음)
+[build]
+  publish = "."
+
+# 관리 화면은 검색에 나오지 않게
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# 관리 화면에서 고친 내용 파일은 항상 최신을 확인하게
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
