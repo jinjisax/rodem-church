@@ -402,17 +402,22 @@
       if (e.key === 'ArrowLeft') { pause(); move(-1); e.preventDefault(); }
       if (e.key === 'ArrowRight') { pause(); move(1); e.preventDefault(); }
     });
-    viewport.addEventListener('mouseenter', function () { hover = true; });
-    viewport.addEventListener('mouseleave', function () { hover = false; });
+    /* 마우스일 때만 '올려 두면 멈춤' (터치 화면에서는 탭 후에도 멈추지 않도록) */
+    viewport.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') hover = true; });
+    viewport.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') hover = false; });
 
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; }, { threshold: 0.35 }).observe(pcar);
     } else { visible = true; }
     if (!reduce) {
-      window.setInterval(function () {
+      /* PC 3초, 휴대폰(한 명씩 화면 가득) 2초 간격 */
+      var gap = function () { return window.innerWidth <= 700 ? 2000 : 3000; };
+      var tick = function () {
+        window.setTimeout(tick, gap());
         if (!visible || hover || dragging || busy || document.hidden || Date.now() < pausedUntil) return;
         move(1);
-      }, 3000);
+      };
+      window.setTimeout(tick, gap());
     }
 
     /* 5) 손가락·마우스로 밀어서 넘기기 */
@@ -423,7 +428,7 @@
       dragging = true; moved = false; startX = e.clientX; dx = 0;
       try { viewport.setPointerCapture(e.pointerId); } catch (err) { /* 무시 */ }
       viewport.classList.add('is-drag');
-      pause(9000);
+      pause(window.innerWidth <= 700 ? 3500 : 9000);
     });
     viewport.addEventListener('pointermove', function (e) {
       if (!dragging) return;
@@ -458,6 +463,33 @@
      내용 파일을 못 읽어도(또는 content.js 가 없어도) 페이지에 원래 들어 있던 내용으로 정상 동작합니다. */
   /* 주소 뒤의 #항목(예: about.html#worship)으로 들어왔을 때, 내용·사진이 늦게 채워져 페이지 높이가 바뀌어도
      정확한 자리로 다시 맞춥니다 (사용자가 직접 스크롤하기 전까지만) */
+  /* 휴대폰: 탭을 누르면 그 섹션의 내용(섬기는 사람들은 사진)이 고정 머리글·탭 바로 아래에 딱 맞게 옵니다 */
+  function mobileTabY(sec) {
+    var hd = document.querySelector('.header'), nav = document.querySelector('.subnav');
+    var bars = (hd ? hd.offsetHeight : 0) + (nav ? nav.offsetHeight : 0);
+    /* 등장 애니메이션(살짝 아래에서 올라옴)의 영향을 받지 않도록, 화면 좌표 대신 문서 안의 실제 위치를 잽니다 */
+    var absTop = function (el) { var y = 0; while (el) { y += el.offsetTop; el = el.offsetParent; } return y; };
+    var pc = sec.querySelector('.pcar');
+    if (pc) return Math.max(0, absTop(pc) - bars);
+    var pad = parseFloat(getComputedStyle(sec).paddingTop) || 0;
+    return Math.max(0, absTop(sec) + Math.min(pad, 72) - bars - 8);
+  }
+  function initMobileTabs() {
+    var nav = document.querySelector('.subnav');
+    if (!nav) return;
+    Array.prototype.forEach.call(nav.querySelectorAll('a[href^="#"]'), function (a) {
+      a.addEventListener('click', function (e) {
+        if (window.innerWidth > 700) return;
+        var sec = document.querySelector(a.getAttribute('href'));
+        if (!sec) return;
+        e.preventDefault();
+        window.scrollTo({ top: mobileTabY(sec), behavior: 'smooth' });
+        /* 사진이 늦게 뜨며 높이가 바뀌어도 한 번 더 정확히 맞춥니다 */
+        window.setTimeout(function () { window.scrollTo({ top: mobileTabY(sec), behavior: 'auto' }); }, 650);
+        try { history.replaceState(null, '', a.getAttribute('href')); } catch (err) { /* 무시 */ }
+      });
+    });
+  }
   function initAnchorFix() {
     var h = window.location.hash;
     if (!h || h.length < 2) return;
@@ -467,7 +499,11 @@
     var moved = false;
     var mark = function () { moved = true; };
     ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (ev) { window.addEventListener(ev, mark, { passive: true, once: true }); });
-    var jump = function () { if (!moved) target.scrollIntoView({ block: 'start', behavior: 'instant' }); };
+    var jump = function () {
+      if (moved) return;
+      if (window.innerWidth <= 700 && document.querySelector('.subnav')) window.scrollTo({ top: mobileTabY(target), behavior: 'auto' });
+      else target.scrollIntoView({ block: 'start', behavior: 'instant' });
+    };
     jump();
     window.addEventListener('load', function () { window.setTimeout(jump, 200); window.setTimeout(jump, 900); });
   }
@@ -480,6 +516,7 @@
       initYouTube();
       initReveal();
       initSubnav();
+      initMobileTabs();
       initYear();
       initAnchorFix();
     };

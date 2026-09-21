@@ -352,6 +352,7 @@
         crop.appendChild(img); box.appendChild(crop);
       } else { box.appendChild(img); }
       box.appendChild(x);
+      box.appendChild(el('p', 'lightbox__hint', '두 손가락으로 벌리면 크게 볼 수 있어요'));
       box.addEventListener('click', close);
       document.body.appendChild(box);
       document.body.style.overflow = 'hidden';
