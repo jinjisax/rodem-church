@@ -954,3 +954,13 @@ table { border-collapse: collapse; width: 100%; }
 }
 /* 휴대폰·태블릿: 첫 화면 SCROLL 표시는 예배 시간과 겹쳐서 숨깁니다 (파일 뒤쪽에 둬야 기본값에 덮이지 않음) */
 @media (max-width: 900px) { .hero__scroll { display: none; } }
+
+/* 휴대폰 메뉴: 스크롤해서 머리글이 흰색(흐림 효과)으로 바뀌어도 전체 메뉴가 화면 가득 펼쳐지게.
+   흐림 효과(backdrop-filter)가 머리글에 직접 있으면 메뉴 창이 머리글 높이 안에 갇히므로, 효과를 머리글 뒤쪽 층으로 옮깁니다 */
+@media (max-width: 900px) {
+  .header--solid { backdrop-filter: none; -webkit-backdrop-filter: none; background: transparent; }
+  .header--solid::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(255, 255, 255, .94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+  .nav-open .header { backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .nav-open .header--solid::before { background: #fff; }
+  .header { isolation: isolate; }
+}
