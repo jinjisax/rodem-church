@@ -507,6 +507,16 @@
     jump();
     window.addEventListener('load', function () { window.setTimeout(jump, 200); window.setTimeout(jump, 900); });
   }
+  /* 예배 시간표: 줄을 누르면 금빛 표시 (휴대폰에서도 PC 의 마우스 올림과 같게). 다른 줄을 누르면 그 줄로 옮겨 가고, 같은 줄을 다시 누르면 꺼집니다 */
+  function initTimetableTap() {
+    document.addEventListener('click', function (e) {
+      var tr = e.target.closest && e.target.closest('.timetable tbody tr');
+      if (!tr) return;
+      var on = tr.classList.contains('is-on');
+      Array.prototype.forEach.call(document.querySelectorAll('.timetable tbody tr.is-on'), function (r) { r.classList.remove('is-on'); });
+      if (!on) tr.classList.add('is-on');
+    });
+  }
   ready(function () {
     var start = function () {
       initPeopleSlider();
@@ -517,6 +527,7 @@
       initReveal();
       initSubnav();
       initMobileTabs();
+      initTimetableTap();
       initYear();
       initAnchorFix();
     };
