@@ -964,3 +964,6 @@ table { border-collapse: collapse; width: 100%; }
   .nav-open .header--solid::before { background: #fff; }
   .header { isolation: isolate; }
 }
+/* 예배 시간표: 휴대폰에서 줄을 누르면 PC 에서 마우스를 올린 것과 같은 금빛으로 표시 (한 번에 한 줄) */
+.timetable tbody tr { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.timetable tbody tr.is-on.is-on:nth-child(n) { background: linear-gradient(90deg, rgba(255, 199, 60, .3), rgba(255, 199, 60, .08)); box-shadow: inset 4px 0 0 #F5A623; }
