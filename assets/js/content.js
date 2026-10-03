@@ -170,24 +170,68 @@
   }
   function delay(i) { return (i % 3) ? String(i % 3) : ''; }
 
+  /* 주보를 날짜별 한 주(앞면·뒷면)로 묶고, 최근 날짜가 먼저 오게 정렬 */
+  var BULLETIN_WEEKS = 12;   /* 화면에 보여 줄 주보 수 (이번 주 포함) */
+  function bulletinWeeks(d) {
+    var items = arr(d.items).filter(function (x) { return str(x.image); });
+    var weeks = [], byKey = {};
+    items.forEach(function (it, i) {
+      var key = str(it.date) || ('no-date-' + i);
+      if (!byKey[key]) { byKey[key] = { date: str(it.date), pages: [], order: i }; weeks.push(byKey[key]); }
+      byKey[key].pages.push(it);
+    });
+    weeks.sort(function (a, b) {
+      if (a.date && b.date && a.date !== b.date) return a.date < b.date ? 1 : -1;
+      return a.order - b.order;
+    });
+    return weeks;
+  }
   function renderBulletin(d) {
     var host = $('[data-bulletin]');
-    var items = arr(d.items).filter(function (x) { return str(x.image); });
-    if (!host || !items.length) return;
+    var weeks = bulletinWeeks(d).slice(0, BULLETIN_WEEKS);
+    if (!host || !weeks.length) return;
     host.textContent = '';
     host.className = 'grid grid-2 bulletin-wide';
-    /* 이번 주 주보 = 맨 위 2장(앞면 · 뒷면). 사진 아래쪽 흰 여백은 잘라서 보여 줍니다 (1403×992 → 1403×775) */
-    items.slice(0, 2).forEach(function (it, i) {
+    /* 이번 주 주보 = 가장 최근 날짜의 앞면 · 뒷면. 사진 아래쪽 흰 여백은 잘라서 보여 줍니다 (1403×992 → 1403×775) */
+    var cur = weeks[0];
+    cur.pages.slice(0, 2).forEach(function (it, i) {
       var card = el('article', 'card reveal');
       var dl = delay(i); if (dl) card.setAttribute('data-d', dl);
       card.appendChild(zoomButton(it.image, str(it.title) || '주보', '1403 / 775'));
       var body = el('div', 'card__body');
       body.appendChild(el('span', 'card__tag', i === 0 ? '이번 주 · 앞면' : '이번 주 · 뒷면'));
-      body.appendChild(el('h3', 'h3', str(it.title) || '주보'));
-      if (str(it.date)) body.appendChild(el('p', 'muted small', fmtDate(it.date)));
+      body.appendChild(el('h3', 'h3', (i === 0 ? '이번 주 주보 — 앞면' : '이번 주 주보 — 뒷면')));
+      if (cur.date) body.appendChild(el('p', 'muted small', fmtDate(cur.date)));
       card.appendChild(body);
       host.appendChild(card);
     });
+
+    /* 지난 주보: 최근 순으로 누적 (주마다 앞면 · 뒷면 작은 그림, 누르면 크게) */
+    var old = $('.bulletin-archive');
+    if (old) old.parentNode.removeChild(old);
+    var past = weeks.slice(1);
+    if (!past.length) return;
+    var wrap = el('div', 'bulletin-archive reveal');
+    var head = el('div', 'bulletin-archive__head');
+    head.appendChild(el('h3', 'h3', '지난 주보'));
+    head.appendChild(el('p', 'muted small', '최근 ' + BULLETIN_WEEKS + '주의 주보를 다시 보실 수 있습니다.'));
+    wrap.appendChild(head);
+    var grid = el('div', 'bulletin-archive__grid');
+    past.forEach(function (w) {
+      var card = el('article', 'bweek');
+      card.appendChild(el('p', 'bweek__date', w.date ? fmtDate(w.date) + ' 주보' : '지난 주보'));
+      var pics = el('div', 'bweek__pics');
+      w.pages.slice(0, 2).forEach(function (it, i) {
+        var fig = el('figure', 'bweek__pic');
+        fig.appendChild(zoomButton(it.image, (w.date ? fmtDate(w.date) + ' ' : '') + (i === 0 ? '주보 앞면' : '주보 뒷면'), '1403 / 775'));
+        fig.appendChild(el('figcaption', '', i === 0 ? '앞면' : '뒷면'));
+        pics.appendChild(fig);
+      });
+      card.appendChild(pics);
+      grid.appendChild(card);
+    });
+    wrap.appendChild(grid);
+    host.parentNode.insertBefore(wrap, host.nextSibling);
   }
   function renderGallery(d) {
     var host = $('[data-gallery]');
@@ -261,7 +305,7 @@
       if (fig) { fig.setAttribute('data-photo', rawUrl(item.image)); }
       if (title) { var h = $('.h3', card); if (h) h.textContent = title; }
     }
-    if (bul) { var b = arr(bul.items)[0]; apply('bulletin', b, b && str(b.title)); }
+    if (bul) { var bw = bulletinWeeks(bul)[0]; var b = bw && bw.pages[0]; apply('bulletin', b, '이번 주 주보'); }
     if (gal) { apply('gallery', arr(gal.items)[0], ''); }
     if (not) { var n = arr(not.items)[0]; apply('board', n, n && str(n.title)); }
   }
