@@ -2,15 +2,17 @@
 #  로뎀나무교회 관리 화면 설정 (Decap CMS)
 #  주소: https://www.rodemin.kr/admin/
 #
-#  ※ 맨 위 backend 부분은 '관리툴-설정방법.md' 의 안내대로 한 번만 고치면 됩니다.
-#    (깃허브 저장소 이름과, DecapBridge 가 알려주는 주소 2개)
+#  ※ 맨 위 backend 부분은 DecapBridge 가 만들어 준 값입니다 (사이트 등록 완료). 고치지 마세요.
 #  ※ 그 아래 collections 는 화면에 나오는 메뉴와 입력칸입니다. 글자만 바꾸셔도 됩니다.
 # ============================================================
 backend:
   name: git-gateway
-  repo: 깃허브아이디/저장소이름                                   # ← 바꾸세요 (예: rodemchurch/homepage)
+  repo: jinjisax/rodem-church
   branch: main
-  identity_url: https://auth.decapbridge.com/sites/여기에-사이트-아이디   # ← DecapBridge 화면의 값으로 바꾸세요
+  auth_type: pkce
+  base_url: https://auth.decapbridge.com
+  auth_endpoint: /sites/1b82606c-0763-4285-a29c-a690dddef790/pkce
+  auth_token_endpoint: /sites/1b82606c-0763-4285-a29c-a690dddef790/token
   gateway_url: https://gateway.decapbridge.com
 
 locale: ko
@@ -83,7 +85,7 @@ collections:
   # ------------------------------------------------------------
   - name: bulletin
     label: "③ 주보"
-    description: "매주 새 주보 2장을 추가하세요. ※ 순서: 뒷면을 먼저 추가한 다음 앞면을 추가하면, 앞면이 맨 위에 오게 됩니다. 주보 페이지에는 맨 위 2장만 나오고, 앞면(맨 위)의 표지가 첫 화면에도 나옵니다. 오래된 주보는 삭제해도 됩니다. (가로 1403×992 크기 그대로 올리세요)"
+    description: "매주 새 주보 2장(앞면, 뒷면)을 추가하고 두 장 모두 같은 날짜(예: 2026-10-11)를 넣으세요. 가장 최근 날짜가 \"이번 주 주보\"로 크게 나오고, 지난 주보는 최근 12주까지 아래에 쌓입니다. 12주보다 오래된 주보는 삭제해도 됩니다. (가로 1403×992 크기 그대로 올리세요)"
     editor: { preview: false }
     files:
       - name: bulletin
