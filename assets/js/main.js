@@ -258,6 +258,53 @@
   }
 
   /* ---------------------------------------------------------
+     7-1) 방문자 수 (Today / Total) — 가입이 필요 없는 무료 카운터(countapi.mileshilliard.com) 사용
+     ※ base  = 카운터를 달기 전까지의 누적 방문자 수 (2026-11-20 기준 263명)
+     ※ Total = base + 카운터 누적,  Today = 오늘(한국 시간) 방문자 수
+     ※ 같은 기기·브라우저는 하루에 한 번만 셉니다. 내 컴퓨터(미리보기)에서 본 것은 세지 않습니다.
+     ※ 카운터 서버에 닿지 않으면 방문자 수 칸은 나타나지 않습니다.
+     --------------------------------------------------------- */
+  var VISITOR = { prefix: 'rodemin-kr-v1', base: 263 };
+
+  function initVisitors(cfg) {
+    cfg = cfg || VISITOR;
+    var bottom = document.querySelector('.footer__bottom');
+    if (!cfg.prefix || !bottom || document.querySelector('.visitors')) return;
+
+    var api = 'https://countapi.mileshilliard.com/api/v1/';
+    var day = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+    var keys = [cfg.prefix + '-total', cfg.prefix + '-d' + day.replace(/-/g, '')];
+    var mark = 'rc-visit-' + cfg.prefix;
+    var seen = false;
+    try { seen = window.localStorage.getItem(mark) === day; } catch (e) { /* 저장소를 못 쓰면 매번 셈 */ }
+    var local = /^(localhost|127\.|\[::1\])/.test(location.hostname) || location.protocol === 'file:';
+    var count = cfg.force || (!seen && !local);
+
+    var call = function (key) {
+      return fetch(api + (count ? 'hit/' : 'get/') + key, { cache: 'no-store' })
+        .then(function (r) {
+          if (r.status === 404) return { value: 0 };   /* 아직 아무도 세지 않은 날 */
+          if (!r.ok) throw new Error(r.status);
+          return r.json();
+        })
+        .then(function (j) { return parseInt(j.value, 10) || 0; });
+    };
+
+    Promise.all(keys.map(call)).then(function (v) {
+      if (count) { try { window.localStorage.setItem(mark, day); } catch (e) { /* 무시 */ } }
+      var fmt = function (n) { return n.toLocaleString('ko-KR'); };
+      var box = document.createElement('div');
+      box.className = 'visitors';
+      box.setAttribute('aria-label', '방문자 수');
+      box.innerHTML =
+        '<div class="visitors__row"><span>Today</span><b>' + fmt(v[1]) + '</b></div>' +
+        '<div class="visitors__row"><span>Total</span><b>' + fmt((cfg.base || 0) + v[0]) + '</b></div>';
+      bottom.parentNode.insertBefore(box, bottom.nextSibling);
+    }, function () { /* 카운터 서버에 닿지 않으면 보이지 않게 둠 */ });
+  }
+  window.RodemVisitors = initVisitors;
+
+  /* ---------------------------------------------------------
      7-2) 섬기는 사람들 — 가로 슬라이드(캐러셀)
           · 담임목사부터 12명이 하나의 띠로 이어져 옆으로 계속 돕니다
           · PC는 여러 명, 휴대폰은 한 명씩 / 화살표·점·밀어서 넘기기·자동 넘김
@@ -529,6 +576,7 @@
       initMobileTabs();
       initTimetableTap();
       initYear();
+      initVisitors();
       initAnchorFix();
     };
     var started = false;
