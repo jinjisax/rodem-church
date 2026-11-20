@@ -511,6 +511,12 @@ table { border-collapse: collapse; width: 100%; }
 .footer a:hover { color: var(--leaf); }
 .footer address { font-style: normal; line-height: 1.9; }
 .footer__bottom { display: flex; flex-wrap: wrap; gap: 12px 26px; justify-content: space-between; padding-top: 26px; font-size: .84rem; color: #6C7A70; }
+.visitors { display: grid; gap: 6px; width: max-content; min-width: 170px; margin: 18px 0 0 auto; padding: 12px 18px; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; background: rgba(255,255,255,.04); }
+.visitors__row { display: flex; justify-content: space-between; align-items: baseline; gap: 22px; font-size: .8rem; }
+.visitors__row span { letter-spacing: .12em; text-transform: uppercase; color: #7E8E83; font-weight: 700; font-size: .72rem; }
+.visitors__row b { font-variant-numeric: tabular-nums; color: #fff; font-size: 1.02rem; font-weight: 800; letter-spacing: .01em; }
+.visitors__row:last-child b { color: var(--leaf); }
+@media (max-width: 720px) { .visitors { margin: 22px auto 0; } }
 .sns { display: flex; gap: 10px; margin-top: 20px; }
 .sns a {
   width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
